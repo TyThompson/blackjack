@@ -11,6 +11,7 @@ require './player'
 require './dealer'
 
 class TestCard < Minitest::Test
+
   def test_number_card_value
     2.upto(10) do |x|
       card = Card.new(x, :S)
@@ -27,6 +28,7 @@ class TestCard < Minitest::Test
 end
 
 class TestDeck < Minitest::Test
+
   def test_counting_cards
     deck = Deck.new
     assert_equal deck.cards.count, 52
@@ -57,6 +59,7 @@ class TestDeck < Minitest::Test
 end
 
 class TestHand < Minitest::Test
+
   def test_hand_value_with_number_cards
     hand = Hand.new
     hand.add(Card.new(9, :H), Card.new(7, :S))
@@ -118,6 +121,7 @@ class TestHand < Minitest::Test
     refute h2.beats?(h1)
   end
 
+
   def test_busted_hands_dont_beat_unbusted_hands
     h1 = Hand.new
     h1.add(Card.new(3, :H), Card.new(6, :S))
@@ -128,6 +132,7 @@ class TestHand < Minitest::Test
     assert h1.beats?(h2)
     refute h2.beats?(h1)
   end
+
 
   def test_hands_can_tie
     h1 = Hand.new
@@ -169,9 +174,11 @@ class PlayerTest < Minitest::Test
 end
 
 class DealerTest < Minitest::Test
+
   def test_can_deal_a_hand
     p = Player.new
     d = Dealer.new
+
 
     d.deal_hand_to p
     assert_equal 2, p.hand.cards.count
@@ -197,7 +204,7 @@ class DealerTest < Minitest::Test
     assert_equal 2, p.hand.cards.count
   end
 
-focus
+
   def test_dealer_holds_the_deck
     d = Dealer.new
     assert d.deck.is_a?(Deck)
@@ -216,8 +223,11 @@ focus
     d = Dealer.new
     p = Player.new
 
+    #binding.pry
+
     d.deal_hand_to p
     50.times { d.hit p }
+    #binding.pry
     assert_equal d.deck.cards.count, 0
 
     # This should re-start the deck / grab
@@ -227,4 +237,7 @@ focus
     d.hit p
     assert_equal d.deck.cards.count, 51
   end
+
+
+
 end

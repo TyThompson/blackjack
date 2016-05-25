@@ -10,7 +10,6 @@ class Card
 	def initialize(card, suit=:S)
 	 	@card = card
 		@suit = suit
-		@aces = 0
 	end
 
 	def to_i
@@ -19,7 +18,6 @@ class Card
 				10
 			when :A
 				11
-				@aces += 1
 			else
 				card.to_i
 			end
@@ -29,4 +27,13 @@ class Card
 	def to_s
 		"#{card}#{suit}"
 	end
+
+
+
+
+
+
+
+
+
 end

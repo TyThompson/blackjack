@@ -3,10 +3,12 @@ require './deck'
 require './hand'
 require './player'
 require './dealer'
-
+require 'pry'
 
 class Hand
-	attr_reader :cards, :aces
+	attr_reader(
+		:cards
+	)
 	def initialize
 		@cards = []
 	end
@@ -15,8 +17,21 @@ class Hand
 		@cards.concat(cards)
     end
 
+    def aces
+    	cards.select { |card| card.card == :A }
+    end
+
     def to_i
-    	cards.map(&:to_i).inject(:+)
+    	ret = cards.map(&:to_i).inject(:+)
+
+    	if ret > 21
+    		aces.each do
+    			ret -= 10
+    			break if ret <= 21
+    		end
+    	end
+
+    	ret
     end
 
     alias_method :value, :to_i
@@ -33,8 +48,21 @@ class Hand
 		cards.join(', ')
 	end
 
+	def showing
+		cards.first.to_s
+	end
+	
 	def beats?(p)
 		(self.to_i > p.to_i && self.to_i <= 21) || p.to_i > 21
 	end
+
+
+
+
+
+
+
+
+
 
 end

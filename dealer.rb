@@ -7,28 +7,38 @@ require './player'
 require './dealer'
 
 class Dealer
+	attr_reader(
+		:deck
+	)
 
 	def initialize
-		if @cards = []
-			reshuffle_when_out_of_cards
-		end
+		@deck = Deck.new
 	end
 
 	def deal_hand_to(person)
-		draw
-		person = Hand.add(drawn)
-		draw
-		person = Hand.add(drawn)
+		person.hand = Hand.new
+		hit(person)
+		hit(person)
 	end
 
 	def hit(person)
-		# person gains 1 card
-		draw
-		person = Hand.add(drawn)
+		person.hand.add(draw)
 	end
 
-	def reshuffle_when_out_of_cards
-		@reshuffle
+	def draw
+		
+		ret = deck.draw
+		if ret.nil?
+			deck.reshuffle
+			ret = deck.draw
+		end
+
+		ret
 	end
+
+
+
+
+
 
 end
