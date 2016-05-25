@@ -22,15 +22,13 @@ class Card
 				11
 			else
 				card.to_i
-		end
+			end
 	end
 	alias_method :value, :to_i
-
 
 	def to_s
 		"#{card}#{suit}"
 	end
-
 end
 
 
@@ -65,10 +63,7 @@ class Deck
 end
 
 class Hand
-
-	attr_reader(
-		:cards
-	)
+	attr_reader :cards
 	def initialize
 		@cards = []
 	end
@@ -80,21 +75,15 @@ class Hand
     def to_i
     	cards.map(&:to_i).inject(:+)
     end
-    alias_method :value, :to_i
 
+    alias_method :value, :to_i
 
 	def busted?
 		to_i > 21
 	end
 
-	def acelogic
-		if busted? == true
-			@value - 10
-		end
-	end
-
 	def blackjack?
-		@drawn_card == 21
+		to_i == 21
 	end
 
 	def to_s
