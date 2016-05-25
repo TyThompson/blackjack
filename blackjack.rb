@@ -7,22 +7,30 @@
 
 require 'pry'
 class Card
-	attr_reader :value, :suit
-	 def initialize(value, suit=:S)
-		case value
-			when :K
-				@value = 10
-			when :Q 
-				@value = 10
-			when :J
-				@value = 10
-			when :A
-				@value = 11
-			else
-				@value = value
-			end
+	attr_reader :card, :suit
+
+	def initialize(card, suit=:S)
+	 	@card = card
 		@suit = suit
 	end
+
+	def to_i
+		case card
+			when :K, :Q, :J
+				10
+			when :A
+				11
+			else
+				card.to_i
+		end
+	end
+	alias_method :value, :to_i
+
+
+	def to_s
+		"#{card}#{suit}"
+	end
+
 end
 
 
@@ -58,32 +66,25 @@ end
 
 class Hand
 
-	attr_reader :cards, :drawn_card, :count, :draw, :value,:drawn_card, :draw,
+	attr_reader(
+		:cards
+	)
 	def initialize
-		@value = 0
-		@drawn_card.each do |v|
-			@value += card.value
-		end
-		if busted? == false
-			return @value
-		else
-			drawn_card.each do |v|
-				if drawn_card.include?(:A)
-					@value -= 10
-				else
-					return @value
-				end
-			end
-		end
+		@cards = []
 	end
 		
-	def add
-		cards.to_i
-		cards.inject(&:+)
-	end
+	def add(*cards)
+		@cards.concat(cards)
+    end
+
+    def to_i
+    	cards.map(&:to_i).inject(:+)
+    end
+    alias_method :value, :to_i
+
 
 	def busted?
-		@value > 21
+		to_i > 21
 	end
 
 	def acelogic
@@ -96,13 +97,7 @@ class Hand
 		@drawn_card == 21
 	end
 
-def to_s
-    string = []
-    master = @ranks.zip @suits
-    master.each do |e|
-      string.push(e.join)
-    end
-    return string.join(", ")
-  end
+	def to_s
+		cards.join(', ')
+	end
 end
-binding.pry
