@@ -9,7 +9,7 @@ class Deck
 	attr_reader :suits, :cards, :drawn_card
 	def initialize
    		@ranks = %w(2 3 4 5 6 7 8 9 10 :J :Q :K :A)
-    	@suits = %w(:C :D :H :S)
+    	@suits = %i(C D H S)
     	cards = []
     	@drawn_card = []
     	@ranks.each do |rank|
@@ -27,7 +27,7 @@ class Deck
 	def draw
 		drawn = @cards.sample
 		drawn_card << drawn
-		@cards.delete(drawn)
+		@cards = @cards.delete(drawn)
 	end
 
 	def drawn
@@ -36,7 +36,7 @@ class Deck
 
 	def reshuffle
    		@ranks = %w(2 3 4 5 6 7 8 9 10 :J :Q :K :A)
-    	@suits = %w(:C :D :H :S)
+    	@suits = %i(C D H S)
     	cards = []
     	@drawn_card = []
     	@ranks.each do |rank|

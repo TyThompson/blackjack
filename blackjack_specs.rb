@@ -131,7 +131,7 @@ class TestHand < Minitest::Test
 
   def test_hands_can_tie
     h1 = Hand.new
-    h1.add(Card.new(3, :H), Card.new(6, :S))
+    h1.add(Card.new(4, :H), Card.new(6, :S))
 
     h2 = Hand.new
     h2.add(Card.new(5, :H), Card.new(5, :D))
@@ -142,6 +142,7 @@ class TestHand < Minitest::Test
 end
 
 class PlayerTest < Minitest::Test
+
   def test_players_have_wallets
     p = Player.new 100
     assert_equal 100, p.wallet
@@ -196,6 +197,7 @@ class DealerTest < Minitest::Test
     assert_equal 2, p.hand.cards.count
   end
 
+focus
   def test_dealer_holds_the_deck
     d = Dealer.new
     assert d.deck.is_a?(Deck)

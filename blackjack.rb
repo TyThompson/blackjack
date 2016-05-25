@@ -11,18 +11,3 @@ require './player'
 require './dealer'
 
 require 'pry'
-
-
-
-
-
-
-
-<<<<<<< HEAD
-binding.pry
-=======
-	def to_s
-		cards.join(', ')
-	end
-end
->>>>>>> origin/master

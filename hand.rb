@@ -32,4 +32,9 @@ class Hand
 	def to_s
 		cards.join(', ')
 	end
+
+	def beats?(p)
+		(self.to_i > p.to_i && self.to_i <= 21) || p.to_i > 21
+	end
+
 end

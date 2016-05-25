@@ -11,7 +11,7 @@ class Player
 	end
 
 	def wallet
-		@wallet = wallet
+		@wallet
 	end
 
 	def wins(int)
