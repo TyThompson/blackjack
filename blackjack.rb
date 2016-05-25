@@ -1,5 +1,4 @@
 #52 cards
-#4 of each card
 # :H = Hearts
 # :S = Spades
 # :D = Diamonds
