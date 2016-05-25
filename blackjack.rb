@@ -1,5 +1,4 @@
 #52 cards
-#4 of each card
 # :H = Hearts
 # :S = Spades
 # :D = Diamonds
@@ -19,4 +18,11 @@ require 'pry'
 
 
 
+<<<<<<< HEAD
 binding.pry
+=======
+	def to_s
+		cards.join(', ')
+	end
+end
+>>>>>>> origin/master
