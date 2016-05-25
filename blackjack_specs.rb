@@ -223,11 +223,10 @@ class DealerTest < Minitest::Test
     d = Dealer.new
     p = Player.new
 
-    #binding.pry
 
     d.deal_hand_to p
     50.times { d.hit p }
-    #binding.pry
+    
     assert_equal d.deck.cards.count, 0
 
     # This should re-start the deck / grab
