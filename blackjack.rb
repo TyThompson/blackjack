@@ -23,6 +23,23 @@ class Card
 			end
 		@suit = suit
 	end
+	# binding.pry
+
+
+  # def test_number_card_value
+  #   2.upto(10) do |x|
+  #     card = Card.new(x, :S)
+  #     assert_equal card.value, x
+  #   end
+
+  # def test_face_card_value
+  #   [:K, :Q, :J].each do |rank|
+  #     card = Card.new(rank, :H)
+  #     assert_equal card.value, 10
+  #   end
+  # end
+
+
 end
 
 
@@ -54,11 +71,23 @@ class Deck
 	def drawn
 		@drawn_card
 	end
+
+	# deck = Deck.new
+ 	#    assert_equal deck.cards.count, 52
+
+ 	# deck.draw
+    # assert_equal deck.cards.count, 51
+
+    # drawn_card = deck.draw
+    # assert_equal deck.cards.count, 51
+    # refute_includes deck.cards, drawn_card
+    # assert_includes deck.drawn, drawn_card
+    # binding.pry
 end
 
 class Hand
-
-	attr_reader :cards, :drawn_card, :count, :draw, :value,:drawn_card, :draw,
+	# hand.add(Card.new(9, :H), and
+	attr_reader :cards, :drawn_card, :count, :draw, :value, :drawn_card, :acelogic, :to_s, :drawn_card, :draw, :count
 	def initialize
 		@value = 0
 		@drawn_card.each do |v|
@@ -77,15 +106,13 @@ class Hand
 		end
 	end
 		
-	def add
-		cards.to_i
-		cards.inject(&:+)
+	def add(a, b)
+		@value = a + b
 	end
 
 	def busted?
 		@value > 21
 	end
-
 	def acelogic
 		if busted? == true
 			@value - 10
@@ -96,13 +123,19 @@ class Hand
 		@drawn_card == 21
 	end
 
-def to_s
-    string = []
-    master = @ranks.zip @suits
-    master.each do |e|
-      string.push(e.join)
-    end
-    return string.join(", ")
-  end
+	# def to_s
+	# 	@hand.to_s
+	# end
+	binding.pry
 end
-binding.pry
+ #Card.new(7, :S)) regular cards
+	# hand.add(Card.new(9, :H), Card.new(:K, :S)) face cards
+	# hand.add(Card.new(:A, :H), Card.new(:K, :S)) Aces
+
+	#busting # hand.add(Card.new(6, :H), Card.new(:K, :S), Card.new(9, :H))
+    # assert hand.busted?
+    # testing blackjack assert hand.blackjack?
+    # hand to string
+    # hand.add(Card.new(:A, :H), Card.new(:K, :S))
+    # hand.add(Card.new(5, :S))
+    # assert_equal hand.to_s, 'AH, KS, 5S'
